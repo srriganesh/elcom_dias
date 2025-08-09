@@ -9,7 +9,7 @@ const events = [
     date: "11/08/2025",
     time: "03:00 PM",
     venue: "Auditorium",
-    poster: "/public/images/E1.jpg",
+    poster: "./public/images/E1.jpg",
     link: "https://forms.gle/your-form-link",
   },
   {
@@ -18,7 +18,7 @@ const events = [
     date: "TBA",
     time: "TBA",
     venue: "TBA",
-    poster: "/public/images/tba.webp",
+    poster: "./public/images/tba.webp",
     link: "https://forms.gle/your-form-link",
   },
   {
@@ -27,7 +27,7 @@ const events = [
     date: "TBA",
     time: "TBA",
     venue: "TBA",
-    poster: "/public/images/tba.webp",
+    poster: "./public/images/tba.webp",
     link: "https://forms.gle/your-form-link",
   },
   {
@@ -36,7 +36,7 @@ const events = [
     date: "TBA",
     time: "TBA",
     venue: "TBA",
-    poster: "/public/images/tba.webp",
+    poster: "./public/images/tba.webp",
     link: "https://forms.gle/your-form-link",
   },
   {
@@ -45,7 +45,7 @@ const events = [
     date: "TBA",
     time: "TBA",
     venue: "TBA",
-    poster: "/public/images/tba.webp",
+    poster: "./public/images/tba.webp",
     link: "https://forms.gle/your-form-link",
   },
   {
@@ -54,7 +54,7 @@ const events = [
     date: "TBA",
     time: "TBA",
     venue: "TBA",
-    poster: "/public/images/tba.webp",
+    poster: "./public/images/tba.webp",
     link: "https://forms.gle/your-form-link",
   },
   {
@@ -63,7 +63,7 @@ const events = [
     date: "TBA",
     time: "TBA",
     venue: "TBA",
-    poster: "/public/images/tba.webp",
+    poster: "./public/images/tba.webp",
     link: "https://forms.gle/your-form-link",
   },
     {
@@ -72,7 +72,7 @@ const events = [
     date: "TBA",
     time: "TBA",
     venue: "TBA",
-    poster: "/public/images/tba.webp",
+    poster: "./public/images/tba.webp",
     link: "https://forms.gle/your-form-link",
   },
   

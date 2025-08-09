@@ -52,7 +52,7 @@ const Navbar = () => {
           {/* Left Logo - Club Logo */}
           <div className="flex-shrink-0">
             <img
-              src="/public/logos/club.jpg"
+              src="./public/logos/club.jpg"
               alt="Club Logo"
               className="h-14 w-auto object-contain"
             />
@@ -61,7 +61,7 @@ const Navbar = () => {
           {/* Center Logo - College Logo */}
           <div className="flex-shrink-0 absolute left-1/2 transform -translate-x-1/2">
             <img
-              src="/public/logos/college.jpg"
+              src="./public/logos/college.jpg"
               alt="College Logo"
               className="h-16 w-auto object-contain"
             />
@@ -70,7 +70,7 @@ const Navbar = () => {
           {/* Right Logo - Symbol */}
           <div className="flex-shrink-0">
             <img
-              src="/public/logos/symbol.JPG"
+              src="./public/logos/symbol.JPG"
               alt="Symbol"
               className="h-16 w-auto object-contain"
             />
