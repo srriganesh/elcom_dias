@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Smooth scroll for anchor navigation */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Reset margins and paddings */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Prevent horizontal overflow */
+body {
+  overflow-x: hidden;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Make images responsive */
+img {
+  max-width: 100%;
+  height: auto;
+}
