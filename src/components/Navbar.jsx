@@ -70,7 +70,7 @@ const Navbar = () => {
           {/* Right Logo - Symbol */}
           <div className="flex-shrink-0">
             <img
-              src="/logos/symbol.JPG"
+              src="/logos/symbol.jpg"
               alt="Symbol"
               className="h-16 w-auto object-contain"
             />
