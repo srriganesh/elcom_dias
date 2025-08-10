@@ -11,17 +11,17 @@ const leaders = [
   },
   {
     id: 2,
-    name: "Dr Narasimhan D",
-    role: "Associate Dean",
-    subRole: "SRC, SASTRA",
-    imageUrl: "/images/leader2.jpg",
-  },
-  {
-    id: 3,
     name: "Dr Alli Rani A",
     role: "Associate Dean",
     subRole: "SRC, SASTRA",
     imageUrl: "/images/leader3.jpg",
+  },
+  {
+    id: 3,
+    name: "Dr Narasimhan D",
+    role: "Associate Dean",
+    subRole: "SRC, SASTRA",
+    imageUrl: "/images/leader2.jpg",
   },
   {
     id: 4,
