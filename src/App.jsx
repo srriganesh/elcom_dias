@@ -6,6 +6,7 @@ import About from "./pages/About";
 import Events from "./pages/Events";
 import Contact from "./pages/Contact";
 import Leaders from "./pages/Leaders";
+import Footer from "./pages/Footer";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Leaders />
       <Events />
       <Contact />
+      <Footer />
     </div>
   );
 }

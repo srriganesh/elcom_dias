@@ -61,3 +61,8 @@ nav {
 .btn-secondary:hover {
   background-color: #f3f4f6; /* gray-100 */
 }
+@media (max-width: 640px) and (orientation: portrait) {
+  .hide-portrait-sm {
+    display: none !important;
+  }
+}

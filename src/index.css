@@ -25,3 +25,358 @@ img {
   max-width: 100%;
   height: auto;
 }
+@media (max-width: 640px) and (orientation: portrait) 
+{
+ .hide-portrait-sm 
+  {
+    display: none !important;
+  }
+}
+/* Entrance animation for each card (staggered) */
+        @keyframes cardPop {
+          0% { opacity: 0; transform: translateY(22px); }
+          60% { opacity: 1; transform: translateY(-6px); }
+          100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* gentle float for overlay */
+        @keyframes overlayFloat {
+          0% { transform: translateY(0); }
+          50% { transform: translateY(-6px); }
+          100% { transform: translateY(0); }
+        }
+
+        /* avatar border glow */
+        @keyframes pulseGlow {
+          0% { box-shadow: 0 0 0 0 rgba(0, 48, 146, 0.0); }
+          50% { box-shadow: 0 8px 24px -8px rgba(0, 48, 146, 0.18); }
+          100% { box-shadow: 0 0 0 0 rgba(0, 48, 146, 0.0); }
+        }
+
+        /* small sweeping gradient for title */
+        @keyframes titleSweep {
+          0% { background-position: 0% 50%; }
+          100% { background-position: 100% 50%; }
+        }
+
+        /* base overlay styling */
+        .overlay-svg {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          pointer-events: none;
+          opacity: 0.28;
+          transform-origin: center;
+          animation: overlayFloat 18s ease-in-out infinite;
+        }
+        .overlay-svg[aria-hidden="true"] { will-change: transform; }
+
+        /* Section title animation */
+        .section-title {
+          font-size: 1.5rem;
+          font-weight: 700;
+          color: #003092;
+          margin-bottom: 0.5rem;
+          display: inline-block;
+          padding-bottom: 4px;
+          background: linear-gradient(90deg, rgba(0,48,146,0.08), rgba(0,48,146,0.18), rgba(0,48,146,0.08));
+          background-size: 200% 100%;
+          animation: titleSweep 6s linear infinite;
+          border-radius: 4px;
+        }
+
+        /* Leader card outer container (handles entrance) */
+        .leader-card {
+          width: 16rem; /* ~w-64 */
+          animation: cardPop 640ms cubic-bezier(.2,.9,.3,1) both;
+          will-change: transform, opacity;
+        }
+
+        /* Inner wrapper handles tilt/scale via CSS variables */
+        .card-inner {
+          background: rgba(255,255,255,1);
+          border-radius: 1rem;
+          padding: 1.1rem;
+          box-shadow: 0 8px 20px rgba(9,10,11,0.06);
+          transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) scale(var(--s, 1));
+          transition: transform 220ms cubic-bezier(.2,.9,.3,1), box-shadow 220ms;
+          will-change: transform;
+          outline: none;
+          cursor: default;
+          display:flex;
+          flex-direction:column;
+          align-items:center;
+          text-align:center;
+        }
+
+        /* slightly lift on hover/focus */
+        .card-inner:hover,
+        .leader-card:focus-within .card-inner {
+          --s: 1.03;
+          box-shadow: 0 14px 34px rgba(9,10,11,0.10);
+        }
+
+        .avatar {
+          width: 5.5rem;
+          height: 5.5rem;
+          border-radius: 9999px;
+          overflow: hidden;
+          border: 4px solid rgba(229,231,235,0.9);
+          margin-bottom: 0.6rem;
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          transform: translate3d(var(--img-x, 0px), var(--img-y, 0px), 0);
+          transition: transform 240ms cubic-bezier(.2,.9,.3,1);
+          animation: pulseGlow 3s ease-in-out infinite;
+          will-change: transform, box-shadow;
+        }
+
+        .avatar img {
+          width:100%;
+          height:100%;
+          object-fit:cover;
+          display:block;
+        }
+
+        .leader-name {
+          font-size: 1rem;
+          font-weight: 600;
+          margin: 0.25rem 0 0.15rem 0;
+          color: #0f172a;
+        }
+        .leader-role {
+          margin:0;
+          color: #003092;
+          font-weight: 600;
+          font-size: 0.9rem;
+        }
+        .leader-subrole {
+          margin-top: 0.25rem;
+          color: #6b7280; /* gray-500 */
+          font-size: 0.82rem;
+        }
+
+        /* accessibility: reduce motion */
+        @media (prefers-reduced-motion: reduce) {
+          .overlay-svg, .leader-card, .card-inner, .avatar, .section-title {
+            animation: none !important;
+            transition: none !important;
+          }
+        }
+
+        /* focus-visible: keyboard outlines */
+        .card-inner:focus {
+          outline: 3px solid rgba(0,48,146,0.14);
+          outline-offset: 4px;
+        }
+
+        /* responsive adjustments */
+        @media (max-width: 640px) {
+          .leader-card { width: 15.5rem; }
+          .avatar { width: 5rem; height: 5rem; }
+        }
+        /* ---------- Background ---------- */
+        .bg-wrapper { will-change: transform, opacity; }
+        .bg-img {
+          position: absolute;
+          inset: 0;
+          background-size: cover;
+          background-position: center;
+          transform-origin: center;
+          will-change: transform;
+          /* initial scale for subtle zoom-out */
+          transform: scale(1.06);
+          animation: bgScale 12s ease-out forwards;
+        }
+        .bg-tint {
+          position: absolute;
+          inset: 0;
+          background: rgba(0, 0, 0, 0.14);
+          pointer-events: none;
+        }
+
+        /* overlay float */
+        .overlay-svg { opacity: 0.72; animation: overlayFloat 22s ease-in-out infinite; will-change: transform; }
+
+        @keyframes bgScale {
+          from { transform: scale(1.06); }
+          to { transform: scale(1); }
+        }
+        @keyframes overlayFloat {
+          0% { transform: translateY(0); }
+          50% { transform: translateY(-8px); }
+          100% { transform: translateY(0); }
+        }
+
+        /* ---------- Card entrance ---------- */
+        .card-outer { width: 100%; border-radius: 0.75rem; }
+        .card-outer.is-mounted {
+          animation: cardEntrance 800ms cubic-bezier(.2,.9,.3,1) both;
+        }
+        @keyframes cardEntrance {
+          0% { opacity: 0; transform: translateY(28px) scale(.996); }
+          60% { opacity: 1; transform: translateY(-8px) scale(1.002); }
+          100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        /* ---------- Inner card (pointer-driven tilt & parallax) ---------- */
+        .card-inner {
+          border-radius: 0.75rem;
+          transition: box-shadow 220ms cubic-bezier(.2,.9,.3,1);
+          will-change: transform;
+          /* set fallback variables */
+          --rx: 0deg;
+          --ry: 0deg;
+          --tx: 0px;
+          --ty: 0px;
+        }
+        .card-inner:focus { outline: none; box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+
+        /* ---------- Heading gradient sweep ---------- */
+        .heading {
+          display: inline-block;
+          background: linear-gradient(90deg, rgba(0,48,146,0.06), rgba(0,48,146,0.14), rgba(0,48,146,0.06));
+          background-size: 200% 100%;
+          animation: headingSweep 6s linear infinite;
+          padding: 6px 8px;
+          border-radius: 6px;
+        }
+        .brand { color: #003092; }
+
+        @keyframes headingSweep {
+          0% { background-position: 0% 50%; }
+          100% { background-position: 100% 50%; }
+        }
+
+        /* ---------- CTAs ---------- */
+        .cta {
+          display: inline-block;
+          padding: 0.6rem 1.2rem;
+          border-radius: 0.5rem;
+          font-weight: 600;
+          transition: transform 180ms cubic-bezier(.2,.9,.3,1), box-shadow 180ms;
+          text-decoration: none;
+        }
+        .cta.primary {
+          background: #003092;
+          color: white;
+          box-shadow: 0 8px 24px rgba(0,48,146,0.12);
+          animation: ctaPulse 2200ms ease-in-out 1.6s both;
+        }
+        .cta.primary:hover { transform: translateY(-3px); }
+        .cta.secondary {
+          border: 2px solid #003092;
+          color: #003092;
+          background: rgba(255,255,255,0.9);
+        }
+        .cta:focus {
+          outline: 3px solid rgba(0,48,146,0.12);
+          outline-offset: 4px;
+        }
+
+        @keyframes ctaPulse {
+          0% { transform: scale(1); box-shadow: 0 8px 24px rgba(0,48,146,0.12); }
+          50% { transform: scale(1.03); box-shadow: 0 18px 36px rgba(0,48,146,0.18); }
+          100% { transform: scale(1); box-shadow: 0 8px 24px rgba(0,48,146,0.12); }
+        }
+
+        /* ---------- Reduced motion preference ---------- */
+        @media (prefers-reduced-motion: reduce) {
+          .bg-img, .overlay-svg, .card-outer.is-mounted, .heading, .cta.primary { animation: none !important; }
+          /* don't attach transforms if reduced motion */
+          .card-inner { transition: none !important; }
+        }
+
+        /* responsive spacing */
+        @media (min-width: 768px) {
+          .card-inner { padding: 2.5rem; }
+        }
+        /* Background scale (GPU-friendly) */
+        .bg-animated { transform-origin: center; will-change: transform; transform: scale(1.06); animation: bgScale 12s ease-out forwards; }
+        @keyframes bgScale { from { transform: scale(1.06); } to { transform: scale(1); } }
+
+        /* Overlay float */
+        .overlay-svg { will-change: transform, opacity; animation: overlayFloat 20s ease-in-out infinite; }
+        @keyframes overlayFloat { 0% { transform: translateY(0); } 50% { transform: translateY(-8px); } 100% { transform: translateY(0); } }
+
+        /* Card entrance */
+        .event-card { opacity: 0; }
+        .event-card.is-visible { animation: cardPop 640ms cubic-bezier(.2,.9,.3,1) both; }
+        @keyframes cardPop {
+          0% { opacity: 0; transform: translateY(18px) scale(.99); }
+          60% { opacity: 1; transform: translateY(-6px) scale(1.01); }
+          100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        /* Card inner (tilt + parallax via CSS variables) */
+        .card-inner {
+          border-radius: 0.75rem;
+          overflow: hidden;
+          backface-visibility: hidden;
+          transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translate3d(var(--tx, 0px), var(--ty, 0px), 0);
+          transition: box-shadow 220ms cubic-bezier(.2,.9,.3,1), transform 220ms;
+          will-change: transform;
+          background-color: rgba(255,255,255,0.92);
+          cursor: default;
+        }
+
+        .card-inner:focus { outline: none; box-shadow: 0 14px 34px rgba(2,6,23,0.08); }
+
+        .poster-wrap { width: 100%; height: 11rem; overflow: hidden; }
+        .poster { width: 100%; height: 100%; object-fit: cover; display:block; will-change: transform; transform: translate3d(var(--img-x, 0px), var(--img-y, 0px), 0) scale(1.02); transition: transform 260ms cubic-bezier(.2,.9,.3,1); }
+
+        /* hover and focus lift */
+        .card-inner:hover, .card-inner:focus { box-shadow: 0 20px 46px rgba(2,6,23,0.12); transform: translateY(-6px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); }
+
+        /* register button */
+        .register:focus { outline: none; box-shadow: 0 0 0 4px rgba(0,48,146,0.12); }
+
+        /* accessibility: prefer reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+          .bg-animated, .overlay-svg, .event-card.is-visible, .card-inner, .poster { animation: none !important; transition: none !important; transform: none !important; }
+          .event-card { opacity: 1; transform: none; }
+        }
+
+        /* responsive tweaks */
+        @media (max-width: 640px) {
+          .poster-wrap { height: 9rem; }
+        }
+        /* GPU-friendly background scale */
+        .bg-anim { transform-origin: center; transform: scale(1.04); animation: bgScale 14s ease-out forwards; will-change: transform; }
+        @keyframes bgScale { from { transform: scale(1.04); } to { transform: scale(1); } }
+
+        /* Overlay float */
+        .overlay-float { animation: overlayFloat 22s linear infinite; will-change: transform; }
+        @keyframes overlayFloat { 0% { transform: translateY(0); } 50% { transform: translateY(-6px); } 100% { transform: translateY(0); } }
+
+        /* reveal animation for the content card */
+        .pre-reveal { opacity: 0; transform: translateY(18px) scale(0.998); transition: none; }
+        .reveal { animation: cardEnter 720ms cubic-bezier(.2,.9,.3,1) both; }
+        @keyframes cardEnter { 0% { opacity: 0; transform: translateY(18px) scale(.998); } 60% { opacity: 1; transform: translateY(-6px) scale(1.003); } 100% { opacity: 1; transform: translateY(0) scale(1); } }
+
+        /* copy button micro-interaction */
+        .copy-btn { transition: transform 180ms, background-color 160ms; }
+        .copy-btn:active { transform: translateY(1px) scale(0.995); }
+
+        /* small icon/button hover effect */
+        .overlay-float, .copy-btn, .register, .p-3 { will-change: transform, opacity; }
+
+        /* focus visible */
+        .copy-btn:focus-visible, .register:focus-visible, a:focus-visible { outline: 3px solid rgba(0,48,146,0.14); outline-offset: 3px; }
+
+        /* CTA pulse for attention (only run once after reveal) */
+        .reveal .register { animation: ctaPulse 2.2s ease-in-out 0.5s both; }
+        @keyframes ctaPulse { 0% { transform: scale(1); } 50% { transform: scale(1.03); } 100% { transform: scale(1); } }
+
+        /* accessibility: prefers-reduced-motion */
+        @media (prefers-reduced-motion: reduce) {
+          .bg-anim, .overlay-float, .reveal, .reveal .register { animation: none !important; transition: none !important; transform: none !important; }
+          .pre-reveal, .reveal { opacity: 1 !important; transform: none !important; }
+        }
+
+        /* small responsive tweak */
+        @media (max-width: 640px) {
+          .max-w-4xl { padding-left: 1rem; padding-right: 1rem; }
+        }
